@@ -1,0 +1,13 @@
+<div class="page-header" data-ng-init="currentUser()">
+    <h3>
+        Configurações<small>(Altere aqui suas configurações)</small>
+    </h3>
+</div>
+<ul class="nav nav-tabs nav-justified">
+  <li><a href="config">Configurações</a></li>
+  <li class="active"><a href="config/profile">Profile</a></li>
+</ul>
+<div class="row">
+    <pre>{{user|json}}</pre>
+    <pre>{{currentUser|json}}</pre>
+</div>

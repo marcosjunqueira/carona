@@ -1,0 +1,88 @@
+<div class="page-header hidden-sm" data-ng-init="loadRide()">
+    <h3>Rotas e Viagens</h3>
+</div>
+<ul class="nav nav-tabs nav-justified">
+    <li><a href="routes">Rotas</a></li>
+    <li class="active"><a href="rides">Viagens</a></li>
+</ul>
+<div class="panel">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-lg-12">
+            <ol class="breadcrumb">
+                <li>{{rd.route.from.label}}</li>
+                <li data-ng-repeat="city in rd.route.cities">{{city.city.label}}</li>
+                <li>{{rd.route.to.label}}</li>
+            </ol>
+            <div class="row">
+                <div class="col-12 col-sm-6 col-lg-6">
+                    <div class="panel" data-ng-show="rd.requestedUsers">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">Pedidos de Carona</div>
+                        <ul class="media-list" data-ng-repeat="req in rd.requestedUsers">
+                            <li class="media">
+                                <div class="media-body">
+                                    <h4 class="media-heading">
+                                        {{req.firstName + ' ' + req.lastName}}
+                                        <small><i class="icon-map-marker">&nbsp;</i>{{req.location.label}}</small>
+                                        <small><i class="icon-home">&nbsp;</i>{{req.hometown.label}}</small>
+                                    </h4>
+                                    <div class="row">
+                                        <div class="col-lg-4 text-center" data-ng-repeat="profile in req.profiles">
+                                            <a class="thumbnail" href="{{profile.profileUrl}}" title="{{profile.providerId}}" target="_blank">
+                                                <img class="img-responsive" src="{{profile.imageUrl}}" alt="{{profile.providerId}}">
+                                                <div class="caption">
+                                                    <h4>{{profile.providerId}}</h4>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="btn-group btn-group-justified">
+                                            <a class="btn btn-success" data-ng-click="confirm(rd.id, req.id)">
+                                                <i class="icon-check">&nbsp;</i>Confirmar</a>
+                                            <a class="btn btn-danger" data-ng-click="decline(rd.id, req.id)">
+                                                <i class="icon-ban-circle">&nbsp;</i>Recusar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-6">
+                    <div class="panel" data-ng-show="rd.confirmedUsers">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">Confirmados</div>
+                        <ul class="media-list" data-ng-repeat="conf in rd.confirmedUsers">
+                            <li class="media">
+                                <div class="media-body">
+                                    <h4 class="media-heading">
+                                        {{conf.firstName + ' ' + conf.lastName}}
+                                        <small><i class="icon-map-marker">&nbsp;</i>{{conf.location.label}}</small>
+                                        <small><i class="icon-home">&nbsp;</i>{{conf.hometown.label}}</small>
+                                    </h4>
+                                    <div class="row">
+                                        <div class="col-lg-4 text-center" data-ng-repeat="profile in conf.profiles">
+                                            <a class="thumbnail" href="{{profile.profileUrl}}" title="{{profile.providerId}}" target="_blank">
+                                                <img class="img-responsive" src="{{profile.imageUrl}}" alt="{{profile.providerId}}">
+                                                <div class="caption">
+                                                    <h4>{{profile.providerId}}</h4>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="btn-group btn-group-justified">
+                                            <a class="btn btn-danger" data-ng-click="unconfirm(rd.id, conf.id)">
+                                                <i class="icon-remove-circle">&nbsp;</i>Desconfirmar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

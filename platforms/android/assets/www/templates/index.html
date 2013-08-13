@@ -1,0 +1,92 @@
+<div class="page-header" data-ng-init="currentUser()">
+    <h3>Bem vindo {{user.firstName}}!</h3>
+</div>
+<div class="row hidden-sm">
+    <p class="text-center">
+        A grana tá curta e tá precisando de carona?
+        Nada mais prático, ecologicamente correto e camarada que dividir uma carona!
+        Encontre seus Caronas favoritos e seja mais um Caroneiro do aplicativo de compartilhar viagens mais organizado, fácil e prático do Facebook.
+        É Caroneiro? Vai pra onde?
+        É Carona e precisa rachar a gasolina? Vamos juntos?
+    </p>
+    <p class="lead text-right">
+        Comece agora e, boa viagem!
+    </p>
+</div>
+<div class="row">
+    <div>
+        <label>Estou em:</label>
+        <input id="city" type="text" data-ng-model="city.label" readonly class="form-control">
+    </div>
+</div>
+<div class="row">
+    <div class="btn-group btn-group-justified">
+        <a class="btn btn-primary" data-ng-init="detectGeoPosition()" data-ng-click="detectGeoPosition()">
+            <i class="icon-white icon-map-marker"></i>&nbsp;GPS
+        </a>
+        <a class="btn btn-primary" data-ng-click="findFromCity()">
+            <i class="icon-search"></i>&nbsp;Pesquisar
+        </a>
+    </div>
+</div>
+<hr/>
+<div class="row" data-ng-cloak>
+    <div class="panel col-12 col-lg-6">
+        <div class="panel-heading">Estatísticas Gerais</div>
+        <ul class="list-group">
+            <li class="list-group-item col-6">
+                <span class="badge">{{info.routeCount}}</span>
+                Rotas
+            </li>
+            <li class="list-group-item col-6">
+                <span class="badge">{{info.rideCount}}</span>
+                Caronas
+            </li>
+            <li class="list-group-item col-6">
+                <span class="badge">{{info.remainingSeatCount}}/{{info.seatCount}}</span>
+                Vagas
+            </li>
+            <li class="list-group-item col-6">
+                <span class="badge">{{info.requestCount}}</span>
+                Pedidos
+            </li>
+            <li class="list-group-item col-6">
+                <span class="badge">{{info.confirmedCount}}</span>
+                Confirmados
+            </li>
+            <li class="list-group-item col-6">
+                <span class="badge">{{info.userCount}}</span>
+                Usuários
+            </li>
+        </ul>
+    </div>
+    <div class="panel col-12 col-lg-6">
+        <div class="panel-heading">Estatísticas para {{city.label}}</div>
+        <ul class="list-group">
+            <li class="list-group-item col-6">
+                <span class="badge">{{cityInfo.routeCount}}</span>
+                Rotas
+            </li>
+            <li class="list-group-item col-6">
+                <span class="badge">{{cityInfo.rideCount}}</span>
+                Caronas
+            </li>
+            <li class="list-group-item col-6">
+                <span class="badge">{{cityInfo.remainingSeatCount}}/{{cityInfo.seatCount}}</span>
+                Vagas
+            </li>
+            <li class="list-group-item col-6">
+                <span class="badge">{{cityInfo.requestCount}}</span>
+                Pedidos
+            </li>
+            <li class="list-group-item col-6">
+                <span class="badge">{{cityInfo.confirmedCount}}</span>
+                Confirmados
+            </li>
+            <li class="list-group-item col-6">
+                <span class="badge">{{cityInfo.userCount}}</span>
+                Usuários
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="page-header" data-ng-init="currentUser()">
+    <h3>
+        Configurações<small>(Altere aqui suas configurações)</small>
+    </h3>
+</div>
+<ul class="nav nav-tabs nav-justified">
+  <li class="active"><a href="config">Configurações</a></li>
+  <li><a href="config/profile">Profile</a></li>
+</ul>
+<div class="row">
+    <form id="form" name="form" class="form-inline" data-ng-submit="updateMe()">
+        <div class="form-group col-12 col-sm-6 col-lg-4">
+            <label for="firstName">Nome</label>
+            <input id="firstName" type="text" readonly placeholder="Nome" 
+                   class="form-control" data-ng-model="user.firstName"/>
+        </div>
+        <div class="form-group col-12 col-sm-6 col-lg-4">
+            <label for="lastName">Sobrenome</label>
+            <input id="lastName" type="text" readonly placeholder="Sobrenome" 
+                   class="form-control" data-ng-model="user.lastName"/>
+        </div>
+        <div class="form-group col-12 col-sm-6 col-lg-4">
+            <label for="username">Login</label>
+            <input id="username" type="text" readonly placeholder="Login" 
+                   class="form-control" data-ng-model="user.username"/>
+        </div>
+        <div class="form-group col-12 col-sm-6 col-lg-4">
+            <label for="birthday">Data de nascimento</label>
+            <input id="birthday" type="text" 
+                   class="form-control" 
+                   data-ng-model="user.birthday" data-b-datepicker/>
+        </div>
+        <div class="form-group col-12 col-sm-6 col-lg-4">
+            <label for="location">Cidade atual:</label>
+            <input id="location" type="text" placeholder="Moro em..."
+                   autocomplete="off"
+                   class="form-control" data-ng-model="user.location"
+                   data-typeahead="city as city.label for city in cityTypeaheadFn($viewValue)"/>
+        </div>
+        <div class="form-group col-12 col-sm-6 col-lg-4">
+            <label for="hometown">Cidade natal:</label>
+            <input id="hometown" type="text" placeholder="Cidade natal..."
+                   autocomplete="off"
+                   class="form-control" data-ng-model="user.hometown"
+                   data-typeahead="city as city.label for city in cityTypeaheadFn($viewValue)"/>
+        </div>
+        <button type="submit" class="btn btn-primary" data-ng-click="updateMe()">Salvar</button>
+    </form>
+</div>

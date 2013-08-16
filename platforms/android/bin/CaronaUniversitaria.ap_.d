@@ -31,6 +31,7 @@ C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\asset
 C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\assets\www\js \
 C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\assets\www\libs \
 C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\assets\www\phonegap.js \
+C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\assets\www\plugins \
 C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\assets\www\res \
 C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\assets\www\spec \
 C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\assets\www\spec.html \
@@ -503,6 +504,9 @@ C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\asset
 C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\assets\www\libs\font-awesome\scss\_path.scss \
 C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\assets\www\libs\font-awesome\scss\_variables.scss \
 C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\assets\www\libs\jquery\jquery.min.js \
+C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\assets\www\plugins\org.apache.cordova.core.inappbrowser \
+C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\assets\www\plugins\org.apache.cordova.core.inappbrowser\www \
+C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\assets\www\plugins\org.apache.cordova.core.inappbrowser\www\InAppBrowser.js \
 C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\assets\www\res\icon \
 C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\assets\www\res\screen \
 C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\assets\www\res\icon\android \

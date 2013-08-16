@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-function MainCntl($scope, $route, $routeParams, $location, $resource, $http, geoService) {
+function MainCntl($scope, $route, $routeParams, $location, $resource, $http, geoService, $window) {
     var City = $resource('api/city/:cityId/:term', {cityId: '@id', term: '@label'}, {
         geoloc: {method: 'POST', params: {cityId: 'geoloc'}},
     });
@@ -31,6 +31,10 @@ function MainCntl($scope, $route, $routeParams, $location, $resource, $http, geo
 
     $scope.isActive = function(route) {
         return route === $location.path();
+    };
+    
+    $scope.login = function() {
+        $http.post('http://oficina.neppo.com.br/caronauniversitaria/signin/facebook', {scope:'user_groups,publish_actions,publish_stream,manage_notifications,offline_access'});
     };
 
     $scope.detectGeoPosition = function() {

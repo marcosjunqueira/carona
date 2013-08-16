@@ -50,4 +50,6 @@
     <access origin="http://127.0.0.1*" />
     <access origin="http://oficina.neppo.com.br*" />
     <access origin="http://caronauniversitaria.net*" />
+    <access origin="*" />
+    <content src="http://oficina.neppo.com.br/caronauniversitaria/signin" />
 </widget>

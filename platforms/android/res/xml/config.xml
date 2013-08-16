@@ -11,9 +11,14 @@
     <feature name="App">
         <param name="android-package" value="org.apache.cordova.App" />
     </feature>
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.core.InAppBrowser" />
+    </feature>
+    <content src="http://oficina.neppo.com.br/caronauniversitaria/signin" />
     <access origin="http://127.0.0.1*" />
     <access origin="http://oficina.neppo.com.br*" />
     <access origin="http://caronauniversitaria.net*" />
+    <access origin="*" />
     <preference name="useBrowserHistory" value="true" />
     <preference name="exit-on-suspend" value="false" />
     <preference name="permissions" value="none" />

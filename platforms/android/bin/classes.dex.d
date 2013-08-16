@@ -7,4 +7,14 @@ C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\bin\c
 C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\bin\classes\net\caronauniversitaria\R$string.class \
 C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\bin\classes\net\caronauniversitaria\R$xml.class \
 C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\bin\classes\net\caronauniversitaria\R.class \
+C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\bin\classes\org\apache\cordova\core\InAppBrowser$1.class \
+C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\bin\classes\org\apache\cordova\core\InAppBrowser$2$1.class \
+C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\bin\classes\org\apache\cordova\core\InAppBrowser$2$2.class \
+C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\bin\classes\org\apache\cordova\core\InAppBrowser$2$3.class \
+C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\bin\classes\org\apache\cordova\core\InAppBrowser$2$4.class \
+C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\bin\classes\org\apache\cordova\core\InAppBrowser$2$5.class \
+C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\bin\classes\org\apache\cordova\core\InAppBrowser$2.class \
+C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\bin\classes\org\apache\cordova\core\InAppBrowser$InAppBrowserClient.class \
+C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\bin\classes\org\apache\cordova\core\InAppBrowser$InAppChromeClient.class \
+C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\bin\classes\org\apache\cordova\core\InAppBrowser.class \
 C:\Users\Marcos\Documents\NetBeansProjects\carona\carona\platforms\android\bin\dexedLibs\cordova-3.0.0-b7ba938782b729dbdc09654eefa25711.jar \

@@ -1,0 +1,55 @@
+<div class="row">
+    <pre>{{params|json}}</pre>
+    <div class="col-lg-6" data-ng-init="initRides()">
+        <!--<pre>{{rideoffers|json}}</pre>-->
+        <ul class="media-list inline">
+            <li class="media well">
+                <a class="pull-right" href="#">
+                    <img src="http://maps.googleapis.com/maps/api/staticmap?zoom=7&size=200x200&maptype=roadmap&sensor=false&path=from:Uberlandia-MG|Uberaba-MG" alt="ALT NAME" style="margin-right:10px"/>
+                </a>
+                <div class="media-body">
+                    <blockquote class="media-heading pull-left">
+                        <h4>
+                            <!--                                <span data-ng-class="(rd.route.from.id == from.id && 'label label-info')">{{rd.route.from.label}}</span> / 
+                                                            <span data-ng-class="(rd.route.to.id == to.id && 'label label-warning')">{{rd.route.to.label}}</span> -->
+                            <span class="label label-info">Uberlândia - MG</span> / 
+                            <span class="label label-warning">Boa Esperança - MG</span> 
+                            <small>{{1000 | date:'EEEE dd/MM/yyyy HH:mm'}}</small>
+                        </h4>
+                    </blockquote>
+                    <!--<blockquote class="pull-right" data-ng-show="rd.regress">-->
+                    <blockquote class="media-heading pull-right">
+                        <h5>
+                            <!--                                <span data-ng-class="(rd.route.to.id == from.id && 'label label-info')">{{rd.route.to.label}}</span> / 
+                                                            <span data-ng-class="(rd.route.from.id == to.id && 'label label-warning')">{{rd.route.from.label}}</span>-->
+                            <span class="label label-info">Boa Esperança - MG</span> / 
+                            <span class="label label-warning">Uberlândia - MG</span>
+                            <small>{{2000 | date:'EEEE dd/MM/yyyy HH:mm'}}</small>
+                        </h5>
+                    </blockquote>
+                    <strong>Passando por:</strong>
+                        <!--                        <span data-ng-repeat="c in rd.route.cities">
+                                                    <span data-ng-class="((c.id == to.id && 'label label-warning')||(c.id == from.id && 'label label-info'))">{{c.label}}</span>, </span>
+                                                <span class="label label-success">{{rd.remainingSeats}} vagas</span>.-->
+                        <span >
+                            <span class="label label-warning">c.label</span>, 
+                            <span class="label label-info">c.label</span>
+                        </span>
+                        <span class="label label-success">3 vagas</span>.
+                    <br/>
+
+                    <!--<small>{{rd.route.owner.name}}</small>-->
+                    <small>Marcos</small>
+
+                </div>
+                <a class="btn btn-default pull-right"
+                   rel="tooltip" data-placement="top" 
+                   data-original-title="Clique aqui para mais informações sobre a carona." 
+                   data-ng-click="moreRide(rd)">
+                    <i class="icon-plus"></i>
+                    <span>Mais Detalhes</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

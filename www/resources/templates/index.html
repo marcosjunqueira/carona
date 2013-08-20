@@ -1,0 +1,117 @@
+<div class="page-header" data-ng-init="currentUser()">
+    <h3>Bem vindo {{user.firstName}}!</h3>
+</div>
+<div class="row hidden-sm">
+    <p class="text-center">
+        A grana tá curta e tá precisando de carona?
+        Nada mais prático, ecologicamente correto e camarada que dividir uma carona!
+        Encontre seus Caronas favoritos e seja mais um Caroneiro do aplicativo de compartilhar viagens mais organizado, fácil e prático do Facebook.
+        É Caroneiro? Vai pra onde?
+        É Carona e precisa rachar a gasolina? Vamos juntos?
+    </p>
+    <p class="lead text-right">
+        Comece agora e, boa viagem!
+    </p>
+</div>
+
+<form id="form" name="form" class="form-inline" data-ng-init="detectGeoPosition()" data-ng-submit="search(from, to)">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input type="text" name="from" placeholder="Saindo de..." required class="form-control"
+                       autocomplete="off"
+                       data-min-lenght="0"
+                       data-ng-model="from" 
+                       data-typeahead="city.id as city.label for city in cityTypeaheadFn($viewValue)"/>
+                <span class="input-group-btn">
+                    <a class="btn btn-default" data-ng-click="detectCityFrom()">
+                        <i class="icon-white icon-map-marker"></i><span>&nbsp;GPS</span>
+                    </a>
+                </span>
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input type="text" name="to" placeholder="Indo para..." required class="form-control"
+                       autocomplete="off"
+                       data-min-lenght="0"
+                       data-ng-model="to" 
+                       data-typeahead="city.id as city.label for city in cityTypeaheadFn($viewValue)"/>
+                <span class="input-group-btn">
+                    <a class="btn btn-default" data-ng-click="detectCityTo()">
+                        <i class="icon-white icon-map-marker"></i><span>&nbsp;GPS</span>
+                    </a>
+                </span>
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <button type="submit" class="btn btn-primary col-lg-12" 
+                    data-ng-submit="search(from, to)">
+                <i class="icon-search"></i><span>&nbsp;Procurar carona</span>
+            </button>
+        </div>
+    </div>
+</form>
+<hr/>
+<div class="row hidden-lg" data-ng-cloak>
+    <div class="panel col-12 col-lg-6">
+        <div class="panel-heading">Estatísticas Gerais</div>
+        <ul class="list-group">
+            <li class="list-group-item col-6">
+                <span class="badge">{{info.routeCount}}</span>
+                Rotas
+            </li>
+            <li class="list-group-item col-6">
+                <span class="badge">{{info.rideCount}}</span>
+                Caronas
+            </li>
+            <li class="list-group-item col-6">
+                <span class="badge">{{info.remainingSeatCount}}/{{info.seatCount}}</span>
+                Vagas
+            </li>
+            <li class="list-group-item col-6">
+                <span class="badge">{{info.requestCount}}</span>
+                Pedidos
+            </li>
+            <li class="list-group-item col-6">
+                <span class="badge">{{info.confirmedCount}}</span>
+                Confirmados
+            </li>
+            <li class="list-group-item col-6">
+                <span class="badge">{{info.userCount}}</span>
+                Usuários
+            </li>
+        </ul>
+    </div>
+    <div class="panel col-12 col-lg-6">
+        <div class="panel-heading">Estatísticas para {{city.label}}</div>
+        <ul class="list-group">
+            <li class="list-group-item col-6">
+                <span class="badge">{{cityInfo.routeCount}}</span>
+                Rotas
+            </li>
+            <li class="list-group-item col-6">
+                <span class="badge">{{cityInfo.rideCount}}</span>
+                Caronas
+            </li>
+            <li class="list-group-item col-6">
+                <span class="badge">{{cityInfo.remainingSeatCount}}/{{cityInfo.seatCount}}</span>
+                Vagas
+            </li>
+            <li class="list-group-item col-6">
+                <span class="badge">{{cityInfo.requestCount}}</span>
+                Pedidos
+            </li>
+            <li class="list-group-item col-6">
+                <span class="badge">{{cityInfo.confirmedCount}}</span>
+                Confirmados
+            </li>
+            <li class="list-group-item col-6">
+                <span class="badge">{{cityInfo.userCount}}</span>
+                Usuários
+            </li>
+        </ul>
+    </div>
+</div>

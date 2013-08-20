@@ -1,0 +1,357 @@
+<div class="page-header" data-ng-init="currentUser()">
+    <h3>
+        &#8226; Pedir carona<small>(Informe a cidade de origem e a cidade para onde quer ir)</small>
+    </h3>
+</div>
+<div class="row">
+    <pre>{{params|json}}</pre>
+    <form id="form" name="form" class="form-inline" data-ng-init="detectGeoPosition()" data-ng-submit="search()">
+        <fieldset>
+            <div class="col-lg-5">
+                <div class="input-group">
+                    <input type="text" name="from" placeholder="Saindo de..." required class="form-control"
+                           autocomplete="off"
+                           data-min-lenght="0"
+                           data-ng-model="from" 
+                           data-ng-init="initFrom()"
+                           data-typeahead="city as city.label for city in cityTypeaheadFn($viewValue)"/>
+                    <a class="btn btn-primary input-group-btn" data-ng-click="detectCityFrom()">
+                        <i class="icon-map-marker"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="input-group">
+                    <input type="text" name="to" placeholder="Indo para..." required class="form-control"
+                           autocomplete="off"
+                           data-min-lenght="0"
+                           data-ng-model="to" 
+                           data-ng-init="initTo()"
+                           data-typeahead="city as city.label for city in cityTypeaheadFn($viewValue)"/>
+                    <a class="btn btn-primary input-group-btn" data-ng-click="detectCityTo()">
+                        <i class="icon-map-marker"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <button type="submit" class="btn btn-primary placaAmarela" 
+                        data-ng-click="search()">
+                    <i class="icone caroneiro"></i>
+                    <span>Procurar Carona</span>
+                </button>
+            </div>
+            <div class="col-lg-12">
+                <span class="help-inline">Encontre aqui Caronas pra salvar seu fim de semana. É só digitar a cidade pra onde quer ir e "pedir carona".</span>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div class="row-fluid ">
+    <div class="span12 bkgAPP">
+        <div class="row-fluid marketing">
+            <div class="span8 well-small">
+                <h4>CARONAS DO MÊS PARA VOCÊ:</h4>
+                <p class="instrução">Aqui neste calendário você visualiza
+                    datas em que existem caronas registradas para o destino que
+                    procurou:</p>
+                <h4 data-ng-show="rideoffers.length">Caronas:</h4>
+                <span class="label label-info">Saindo de...</span>
+                <span class="label label-warning">Indo para...</span>
+                <ul class="thumbnails" data-ng-repeat="rd in rideoffers">
+                    <li class="span12 clearfix">
+                        <div class="thumbnail row-fluid clearfix">
+                            <img src="{{rd.route.googleMapsImage}}" alt="ALT NAME" class="span4 clearfix" style="margin-right:10px">
+                            <div class="caption span7 clearfix" data-ng-show="rd.departure">
+                                <blockquote>
+                                    <h4><span data-ng-class="(rd.route.from.id == from.id && 'label label-info')">{{rd.route.from.label}}</span> / 
+                                        <span data-ng-class="(rd.route.to.id == to.id && 'label label-warning')">{{rd.route.to.label}}</span> 
+                                        <small>{{rd.departure | date:'EEEE dd/MM/yyyy HH:mm'}}</small></h4>
+                                </blockquote>
+                                <blockquote class="text-right" data-ng-show="rd.regress">
+                                    <h4><span data-ng-class="(rd.route.to.id == from.id && 'label label-info')">{{rd.route.to.label}}</span> / 
+                                        <span data-ng-class="(rd.route.from.id == to.id && 'label label-warning')">{{rd.route.from.label}}</span> <small>{{rd.regress | date:'EEEE dd/MM/yyyy HH:mm'}}</small></h4>
+                                </blockquote>
+                                <small><strong>Passando por:</strong>
+                                    <span data-ng-repeat="c in rd.route.cities">
+                                        <span data-ng-class="((c.id == to.id && 'label label-warning')||(c.id == from.id && 'label label-info'))">{{c.label}}</span>, </span>
+                                    <span class="label label-success">{{rd.remainingSeats}} vagas</span>.
+                                </small><br/>
+
+                                <small>{{rd.route.owner.name}}</small>
+
+                                <a class="btn placaAmarela pull-right"
+                                   rel="tooltip" data-placement="top" 
+                                   data-original-title="Clique aqui para mais informações sobre a carona." 
+                                   data-ng-click="moreRide(rd)">
+                                    <i class="icon-3x icon-plus"></i>
+                                    <span>Mais Detalhes</span>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <h4 data-ng-show="routes.length">Rotas:</h4>
+                <ul class="thumbnails" data-ng-repeat="r in routes">
+                    <li class="span12 clearfix">
+                        <div class="thumbnail row-fluid clearfix">
+                            <img src="{{r.googleMapsImage}}" alt="ALT NAME" class="span4 clearfix" style="margin-right:10px">
+                            <div class="caption span7 clearfix">
+                                <h6>{{r.owner.name}}</h6>
+                                <h5>{{r.from.label}} / {{r.to.label}}</h5>
+                                <small><strong>Passando por:</strong>
+                                    <span data-ng-repeat="c in r.cities">{{c.label}}</span>
+                                </small><br/>
+                                <small><strong>Vagas:</strong> {{r.seats}}</small><br/>
+                                <a href="http://bootsnipp.com/" class="btn btn-primary icon  pull-right">Select</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--            <div class="span6">
+                            <h4>Minhas VIAGENS COM O CARONA</h4>
+                            <p>Viagens que programei recentemente no Carona Universitária:</p>
+                            <ul>
+                                <c:if test="${myTrips.content.isEmpty()}">
+                                    <li
+                                        class="animated fadeInRightBig informacoesCaronaAprovacao caronaReservada">
+                                        <i class="icone PlacaCaronaSelecionada"></i> <a
+                                            class="dispensarCarona" href="#" title="Dispensar Carona">x</a>
+                                        <dl>
+                                            <dt class="cidadeCarona">Você ainda não reservou nenhuma
+                                            carona.</dt>
+            
+                                            <dd class="vagasCarona empilhadas">
+                                                <span>Entre com sua cidade de origem e o destino aonde
+                                                    deseja chegar, e click em procurar carona. </span>
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                </c:if>
+                                <c:forEach items="${myTrips.content}" var="trip"
+                                           varStatus="status">
+                                    <c:choose>
+                                        <c:when
+                                            test="${trip.getTripStatusRequestByUser(myUser) == 'OPEN'}">
+                                            <li
+                                                class="animated fadeInRightBig informacoesCaronaAprovacao caronaReservada">
+                                                <i class="icone PlacaCaronaSelecionada"></i> <a
+                                                    class="dispensarCarona" href="#" title="Dispensar Carona">x</a>
+                                                <dl>
+                                                    <dt class="cidadeCarona">
+                                                    <span>de ${trip.from.label} para: </span>${trip.to.label}
+                                                    </dt>
+                                                    <dd class="dataCarona">
+                                                        <span>ida: </span>
+                                                    <fmt:formatDate value="${trip.date}" type="both"
+                                                                    pattern="dd/MM/yyyy" />
+                                                    </dd>
+                                                    <dd class="horaCarona">
+                                                        <span>hora: </span>
+                                                    <fmt:formatDate value="${trip.date}" type="both"
+                                                                    pattern="HH:mm" />
+                                                    </dd>
+                                                    <dd class="vagasCarona empilhadas">
+                                                        <span>Aguardando aprovação.</span>
+                                                    </dd>
+                                                </dl>
+                                            </li>
+                                        </c:when>
+                                        <c:when
+                                            test="${trip.getTripStatusRequestByUser(myUser) == 'ACCEPT'}">
+                                            <li
+                                                class="animated fadeInRightBig informacoesCaronaEscolhida caronaReservada">
+                                                <i class="icone PlacaCaronaSelecionada"></i> <a
+                                                    class="dispensarCarona" href="#" title="Dispensar Carona">x</a>
+                                                <dl>
+                                                    <dt class="cidadeCarona">
+                                                    <span>de ${trip.from.label} para: </span>${trip.to.label}
+                                                    </dt>
+                                                    <dd class="dataCarona">
+                                                        <span>ida: </span>
+                                                    <fmt:formatDate value="${trip.date}" type="both"
+                                                                    pattern="dd/MM/yyyy" />
+                                                    </dd>
+                                                    <dd class="horaCarona">
+                                                        <span>hora: </span>
+                                                    <fmt:formatDate value="${trip.date}" type="both"
+                                                                    pattern="HH:mm" />
+                                                    </dd>
+                                                    <dd class="vagasCarona empilhadas">
+                                                        <span>Carona aprovada!</span>
+                                                    </dd>
+                                                </dl>
+                                            </li>
+                                        </c:when>
+                                    </c:choose>
+                                </c:forEach>
+                            </ul>
+                        </div>-->
+            <div class="publicidade span4">
+                <p class="publicidadeTitulo">PUBLICIDADE</p>
+                <p>Hospede-se em Boa Esperança - MG</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<pre>{{routes|json}}</pre>
+<pre>{{rideoffers|json}}</pre>-->
+<!--<div class="container-narrow">
+    <div class="row-fluid">
+        <div class="span9 bkgAPP">
+            <div class="row-fluid marketing">
+
+            </div>
+
+            <div class="results hide">
+                <h4>CARONAS DA DATA SELECIONADA:</h4>
+                <p>Escolha abaixo a carona que mais lhe agradar, clicando no
+                    botão "Pedir carona":</p>
+                <table id="tripsTable" class="table table-striped">
+                    <tbody>
+                    </tbody>
+                </table>
+                <a class="maiscaronas hide" href="#" title="carregar mais caronas">+
+                    caronas</a>
+            </div>
+
+            <div class="span12 barraInfo" data-ng-init="loadUsersInfo()">
+                <div class="informacoesMes span6">
+                    <strong>{{cityInfo.tripsCount}}</strong><span class="textoCaronasDisponiveis2">caronas saindo de {{city.label}} para: </span>
+                    <span class="textoCaronasDisponiveis2 span6">
+                        <marquee behavior="SCROLL" direction="LEFT">{{cityInfo.destinationsLabels}}</marquee>
+                    </span>
+                </div>
+                <div class="informacoesMes span3">
+                    <strong>{{cityInfo.totalSeats}}</strong><span class="textoCaronasDisponiveis2">vagas no total.</span>
+                </div>
+                <div class="informacoesMes span3">
+                    <strong>{{usersInfo.usersCount}}</strong><span class="textoCaronasDisponiveis2">usuários no total.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="publicidade span3">
+            <p class="publicidadeTitulo">PUBLICIDADE</p>
+        </div>
+    </div>
+
+    <div id="shareRideFacebook"
+         class="modal hide fade in" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="false">
+        <div class="masthead modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+                    aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Não encontramos sua carona... ainda!</h3>
+        </div>
+        <div class="modal-body">
+            <p>
+                Não temos Caronas para: <strong></strong> ainda, mas
+                temos Caronas que vão para bem pertinho, olha só:
+            </p>
+
+            <div id="accordion2" class="accordion">
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a href="#collapseOne" data-parent="#accordion2"
+                           data-toggle="collapse" class="accordion-toggle"> <i
+                                class="icon-road"></i>&nbsp; Caronas próximas a <strong></strong>:
+                        </a>
+                    </div>
+                    <div class="accordion-body in collapse" id="collapseOne"
+                         style="height: auto;">
+                        <div id="nearCities" class="accordion-inner">
+                            <p class="instrucaoP">
+                                Clique para ver no calendário as datas e Caronas para essas
+                                cidades! Quem sabe eles conseguem dar uma passadinha em seu
+                                destino?<br>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a href="#collapseTwo" data-parent="#accordion2"
+                           data-toggle="collapse" class="accordion-toggle"> <i
+                                class="icon-share-alt"></i>&nbsp; Quero
+                            postar um pedido de carona no Facebook </a>
+                    </div>
+                    <div class="accordion-body collapse" id="collapseTwo"
+                         style="height: 0px;">
+                        <div class="accordion-inner">
+                            <label class="checkbox"> <input type="checkbox"
+                                                            name="wherePublish" value="publishInTimeLine" checked="checked"> Publicar na minha Linha do
+                                Tempo
+                            </label> <label class="checkbox"> <input type="checkbox"
+                                                                     name="wherePublish" value="publishInGroup" checked="checked">
+                                Publicar no(s) grupo(s)
+                            </label> <a rel="tooltip" data-placement="rigth"
+                                        data-original-title="você pode escolher mais de um grupo, pressionando a tecla Ctrl+clique do mouse">
+                                <select multiple="multiple">
+                                    <c:forEach items="${myGroups}" var="group">
+                                        <option value="${group.id}">${group.name}</option>
+                                    </c:forEach>
+                                </select>
+                            </a>
+                            <button class="btn btn-primary" id="facebookPublisher" data-dismiss="modal"
+                                    aria-hidden="true">Publicar no Facebook</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn"  data-parent="#accordion2" href="#collapseTwo"
+                    data-toggle="collapse" aria-hidden="true">Ok,
+                tento depois mais tarde</button>
+
+
+            <i class="logo">Carona Universitária</i>
+        </div>
+    </div>
+
+
+    <div id="shareRideFacebook2" 
+         class="modal hide fade in" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="false">
+        <div class="masthead modal-header">
+            <button type="button" class="close" data-dismiss="modal"
+                    aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Não encontramos sua carona... ainda!</h3>
+        </div>
+        <div class="modal-body">
+            <p>
+                Não temos Caronas para: <strong></strong> ainda, que tal postar o pedido no facebook:
+            </p>
+
+
+            <label class="checkbox"> <input type="checkbox"
+                                            name="wherePublish" value="publishInTimeLine" checked="checked"> Publicar na minha Linha do
+                Tempo
+            </label> <label class="checkbox"> <input type="checkbox"
+                                                     name="wherePublish" value="publishInGroup" checked="checked">
+                Publicar no(s) grupo(s)
+            </label> 
+
+            <a rel="tooltip" data-placement="top"
+               data-original-title="você pode escolher mais de um grupo, pressionando a tecla Ctrl+clique do mouse">
+                <label class="select"> <select multiple="multiple">
+                        <c:forEach items="${myGroups}" var="group">
+                            <option value="${group.id}">${group.name}</option>
+                        </c:forEach>
+                    </select>
+                </label>
+            </a>
+
+
+
+            <button aria-hidden="true" data-dismiss="modal" class="btn">Cancelar</button>
+            <button aria-hidden="true" data-dismiss="modal" id="facebookPublisher2"
+                    class="btn btn-primary">OK</button>
+
+
+            <i class="logo">Carona Universitária</i>
+        </div>
+    </div>
+
+</div>-->
+<!--<hr class="hrTopo"/>-->

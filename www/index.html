@@ -1,162 +1,112 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html data-ng-app="carona">
     <head>
-        <meta charset="utf-8" />
+        <title>Carona Universitária</title>
+        <meta charset="utf-8">
         <meta name="fragment" content="!" />
+        <base href="/carona/" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="format-detection" content="telephone=no" />
-        <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+        <meta content="width=device-width,minimum-scale=1,maximum-scale=1" name="viewport">
 
-        <link rel="stylesheet" type="text/css" href="libs/bootstrap3/css/bootstrap.min.css"/>
-        <link rel="stylesheet" type="text/css" href="libs/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="libs/datetimepicker/css/datepicker.css"/>
-        <link rel="stylesheet" type="text/css" href="libs/datetimepicker/css/datetimepicker.css"/>
-        <link rel="stylesheet" type="text/css" href="css/carona-style.css">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="resources/libs/bootstrap3/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="resources/libs/bootstrap/css/datepicker.css"/>
+        <link rel="stylesheet" type="text/css" href="resources/libs/bootstrap/css/datetimepicker.css"/>
+        <link rel="stylesheet" type="text/css" href="resources/libs/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/carona-style.css">
 
-        <title>Carona Universitária</title>
     </head>
+
     <body data-ng-cloak>
-        <!--<div class="app">-->
-            <!--<h1>Carona Universitária</h1>-->
-<!--            <div id="deviceready" class="blink">
-                <p class="event listening">Conectando ao dispositivo...</p>
-                <p class="event received">Aplicativo pronto para o uso!</p>
-            </div>-->
-        <!--</div>-->
-
-<!--        <div class="navbar navbar-carona navbar-fixed-top">
+        <div class="navbar navbar-carona navbar-fixed-top">
             <div class="container">
-                 .navbar-toggle is used as the toggle for collapsed navbar content 
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-navbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    Carona Universitária
+                <a class="navbar-brand hidden-xs" href="#">
+                    <img src="resources/img/logo_title.png"/>
                 </a>
-                <div id="header-navbar" class="nav-collapse collapse navbar-responsive-collapse">
-                    <ul class="nav navbar-nav pull-right">
-                        <li class="active">
-                            <a href="#/" class="text-center" data-toggle="pill">
-                                <i class="icon-2x icon-home"></i><span class="">Home</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#/search" class="text-center" data-toggle="pill">
-                                <i class="icon-2x icon-search"></i><span class="">Pesquisar</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#/routes" class="text-center" data-toggle="pill">
-                                <i class="icon-2x icon-road"></i><span class="">Rotas</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#/config" class="text-center" data-toggle="pill">
-                                <i class="icon-2x icon-cog"></i><span class="">Configurações</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>-->
-
-<!--        <div class="container container-carona" data-ng-controller="MainCntl" data-ng-init="updateMyGroups()">
-            <div class="row-fluid event" data-ng-view></div>
-        </div>-->
-
-<!--        <div class="navbar navbar-carona">
-            <div class="container">
-                <a class="navbar-brand hidden-sm" href="#">
-                    <h6>&copy; Carona Universitária 2013</h6>
-                </a>
-                <ul class="nav nav-pills pull-right">
-                    <li>
-                        <a href="http://www.facebook.com/caronauni" target="_blank" class="text-center">
-                            <i class="icon-comments"></i>
-                            <span class="hidden-sm">Opine</span></a>
+                <ul class="nav nav-pills nav-justified">
+                    <li class="active">
+                        <a href="" class="text-center" data-toggle="pill">
+                            <i class="icon-2x icon-home"></i><span class="hidden-xs">Home</span>
+                        </a>
                     </li>
-                    <li class="divider-vertical hidden-sm"></li>
                     <li>
-                        <a href="http://www.facebook.com/caronauni" target="_blank" class="text-center">
-                            <i class="icon-envelope"></i>
-                            <span class="hidden-sm">Contato</span></a>
+                        <a href="search" class="text-center" data-toggle="pill">
+                            <i class="icon-2x icon-search"></i><span class="hidden-xs">Pesquisar</span>
+                        </a>
                     </li>
-                    <li class="divider-vertical hidden-sm"></li>
                     <li>
-                        <a href="http://www.facebook.com/caronauni" target="_blank" class="text-center">
-                            <i class="icon-info"></i>
-                            <span class="hidden-sm">Sobre</span></a>
+                        <a href="routes" class="text-center" data-toggle="pill">
+                            <i class="icon-2x icon-road"></i><span class="hidden-xs">Rotas</span>
+                        </a>
                     </li>
-                    <li class="divider-vertical hidden-sm"></li>
                     <li>
-                        <a href="privacy" class="text-center">
-                            <i class="icon-eye-open"></i>
-                            <span class="hidden-sm">Política de Privacidade</span></a>
-                    </li>
-                    <li class="divider-vertical hidden-sm"></li>
-                    <li>
-                        <a href="../caronauniversitaria/signout" target="_self" class="text-center">
-                            <i class="icon-signout"></i>
-                            <span class="hidden-sm">Sair</span></a>
+                        <a href="config" class="text-center" data-toggle="pill">
+                            <i class="icon-2x icon-cog"></i><span class="hidden-xs">Configurações</span>
+                        </a>
                     </li>
                 </ul>
             </div>
-        </div>-->
+        </div>
+        <div class="container container-carona" data-ng-controller="MainCntl" data-ng-init="updateMyGroups()" data-ng-view>
+        </div>
+        <div class="navbar navbar-carona navbar-fixed-bottom">
+            <div class="container">
+                <a class="navbar-brand hidden-xs" href="#">
+                    <h6>&copy; Carona Universitária 2013</h6>
+                </a>
+                <ul class="nav nav-pills nav-justified">
+                    <li>
+                        <a href="http://www.facebook.com/caronauni" target="_blank" class="text-center">
+                            <i class="icon-comments"></i>
+                            <span class="hidden-xs">Opine</span></a>
+                    </li>
+                    <li>
+                        <a href="http://www.facebook.com/caronauni" target="_blank" class="text-center">
+                            <i class="icon-envelope"></i>
+                            <span class="hidden-xs">Contato</span></a>
+                    </li>
+                    <li>
+                        <a href="http://www.facebook.com/caronauni" target="_blank" class="text-center">
+                            <i class="icon-info"></i>
+                            <span class="hidden-xs">Sobre</span></a>
+                    </li>
+                    <li>
+                        <a href="privacy" class="text-center">
+                            <i class="icon-eye-open"></i>
+                            <span class="hidden-xs">Política de Privacidade</span></a>
+                    </li>
+                    <li>
+                        <a href="../caronauniversitaria/signout" target="_self" class="text-center">
+                            <i class="icon-signout"></i>
+                            <span class="hidden-xs">Sair</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
+        <script type="text/javascript" src="resources/libs/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="resources/libs/angular-1.0.7/angular.min.js"></script>
+        <script type="text/javascript" src="resources/libs/angular-1.0.7/angular-resource.min.js"></script>
+        <script type="text/javascript" src="resources/libs/angular-1.0.7/i18n/angular-locale_pt-br.js"></script>
 
-        <script type="text/javascript" src="libs/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="libs/angular-1.0.7/angular.min.js"></script>
-        <script type="text/javascript" src="libs/angular-1.0.7/angular-resource.min.js"></script>
-        <script type="text/javascript" src="libs/angular-1.0.7/i18n/angular-locale_pt-br.js"></script>
+        <script type="text/javascript" src="resources/libs/angular-strap/angular-strap.min.js"></script>
+        <script type="text/javascript" src="resources/libs/bootstrap3/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="resources/libs/angular-ui/ui-bootstrap-0.4.0.min.js"></script>
+        <script type="text/javascript" src="resources/libs/angular-ui/ui-bootstrap-tpls-0.4.0.min.js"></script>
 
-        <script type="text/javascript" src="libs/angular-strap/angular-strap.min.js"></script>
-        <script type="text/javascript" src="libs/bootstrap3/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="libs/angular-ui/ui-bootstrap-0.4.0.min.js"></script>
-        <script type="text/javascript" src="libs/angular-ui/ui-bootstrap-tpls-0.4.0.min.js"></script>
+        <script type="text/javascript" src="resources/libs/bootstrap/js/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="resources/libs/bootstrap/js/locales/bootstrap-datepicker.pt-BR.js"></script>
+        <script type="text/javascript" src="resources/libs/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+        <script type="text/javascript" src="resources/libs/bootstrap/js/locales/bootstrap-datetimepicker.pt-BR.js"></script>
 
-        <script type="text/javascript" src="libs/datetimepicker/js/bootstrap-datepicker.js"></script>
-        <script type="text/javascript" src="libs/datetimepicker/js/locales/bootstrap-datepicker.pt-BR.js"></script>
-        <script type="text/javascript" src="libs/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-        <script type="text/javascript" src="libs/datetimepicker/js/locales/bootstrap-datetimepicker.pt-BR.js"></script>
+        <script type="text/javascript" src="resources/js/app.js"></script>
 
-        <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-
-        <script type="text/javascript" src="js/app.js"></script>
-
-        <script type="text/javascript" src="js/directives.js"></script>
-        <script type="text/javascript" src="js/services/geoService.js"></script>
-        <!--<script type="text/javascript" src="js/services/cordovaReady.js"></script>-->
-        <script type="text/javascript" src="js/controllers/MainCtrl.js"></script>
-        <script type="text/javascript" src="js/controllers/ProfileCtrl.js"></script>
-        <script type="text/javascript" src="js/controllers/RoutesCtrl.js"></script>
-        <script type="text/javascript" src="js/controllers/SearchCtrl.js"></script>
-        <script type="text/javascript" src="js/controllers/RideCtrl.js"></script>
-
-        <script type="text/javascript">
-            app.initialize();
-        </script>
+        <script type="text/javascript" src="resources/js/directives.js"></script>
+        <script type="text/javascript" src="resources/js/services/geoService.js"></script>
+        <script type="text/javascript" src="resources/js/controllers/MainCtrl.js"></script>
+        <script type="text/javascript" src="resources/js/controllers/ProfileCtrl.js"></script>
+        <script type="text/javascript" src="resources/js/controllers/RoutesCtrl.js"></script>
+        <script type="text/javascript" src="resources/js/controllers/SearchCtrl.js"></script>
+        <script type="text/javascript" src="resources/js/controllers/RideCtrl.js"></script>
     </body>
 </html>

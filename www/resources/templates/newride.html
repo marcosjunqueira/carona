@@ -1,6 +1,3 @@
-<div class="page-header hidden-sm" data-ng-init="findMyRides()">
-    <h3>Rotas e Viagens</h3>
-</div>
 <ul class="nav nav-tabs nav-justified">
     <li><a href="routes">Rotas</a></li>
     <li class="active"><a href="rides">Viagens</a></li>
@@ -9,33 +6,66 @@
     <form name="form" data-role="form" novalidate>
         <fieldset>
             <legend>Nova viagem</legend>
-            <div class="form-group">
-                <label for="label" class="control-label">Rota</label>
-                <input type="text" name="label" class="form-control"
-                       placeholder="label" readonly data-ng-model="ride.route.label"/>
+            <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                    <div class="form-group">
+                        <label for="label" class="control-label">Rota</label>
+                        <input type="text" name="label" class="form-control"
+                               placeholder="label" readonly data-ng-model="ride.route.label"/>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                    <div class="form-group">
+                        <label class="control-label">Cidades</label>
+                        <ol class="breadcrumb form-control">
+                            <li>{{ride.route.from.label}}</li>
+                            <li data-ng-repeat="city in ride.route.cities">{{city.label}}</li>
+                            <li>{{ride.route.to.label}}</li>
+                        </ol>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="departure" class="control-label">Data de partida</label>
-                <input type="text" name="departure" class="form-control"
-                       data-bs-datetimepicker="ride.departure" >
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="departure" class="control-label">Data de partida</label>
+                        <input type="text" name="departure" class="form-control"
+                               data-bs-datetimepicker="ride.departure" >
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="regress" class="control-label">Data de regresso</label>
+                        <input type="text" name="regress" class="form-control"
+                               data-bs-datetimepicker="ride.regress" >
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="regress" class="control-label">Data de regresso</label>
-                <input type="text" name="regress" class="form-control"
-                       data-bs-datetimepicker="ride.regress" >
+            <div class="row">
+                <div class="col-xs-12 col-sm-8">
+                    <div class="form-group">
+                        <label for="info" class="control-label">Informações</label>
+                        <textarea name="info" class="form-control" data-ng-model="ride.info">{{ride.route.info}}</textarea>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div class="form-group">
+                        <label for="seats" class="control-label">Vagas</label>
+                        <input type="number" name="seats" class="form-control" 
+                               min="1" max="4" autocomplete="off"
+                               value="{{ride.route.seats}}"
+                               data-ng-model="ride.seats">
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label class="control-label">Cidades</label>
-                <ol class="breadcrumb form-control">
-                    <li>{{ride.route.from.label}}</li>
-                    <li data-ng-repeat="city in ride.route.cities">{{city.label}}</li>
-                    <li>{{ride.route.to.label}}</li>
-                </ol>
-            </div>
-            <div class="form-group">
-                <div class="col-lg-offset-2 col-lg-10">
-                    <a href="routes" class="btn btn-default" >Cancelar</a>
-                    <a class="btn btn-primary" data-ng-click="saveRideOffer()">Salvar viagem</a>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="form-group">
+                        <div class="btn-group btn-group-justified">
+                            <a href="routes" class="btn btn-default" >Cancelar</a>
+                            <a class="btn btn-primary" data-ng-click="saveRideOffer()">Salvar viagem</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </fieldset>
